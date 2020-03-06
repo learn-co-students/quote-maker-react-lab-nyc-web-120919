@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import QuoteForm from './components/QuoteForm';
+import { connect } from 'react-redux';
+import Quotes from './containers/Quotes';
 
 class App extends Component {
   render() {
@@ -8,14 +11,15 @@ class App extends Component {
           <h1>Quote Maker</h1>
         </div>
         <hr />
-        {/*
-          TODO:
-
-          Render QuoteForm and Quotes Components
-         */}
+        <QuoteForm />
+        <Quotes />
       </div>
     );
   }
 }
 
-export default App;
+const msp = state => {
+  return state
+}
+
+export default connect(msp)(App);
