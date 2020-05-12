@@ -28,5 +28,9 @@ class Quotes extends Component {
   }
 }
 
+
+const msp = state = {
+  
+}
 //add arguments to connect as needed
 export default connect()(Quotes);
