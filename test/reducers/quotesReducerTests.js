@@ -168,7 +168,7 @@ describe("QuoteCard (Revisited)", () => {
     store.dispatch({type: 'ADD_QUOTE', quote: {content: 'Gently', author: 'Wesley', votes: 1, id: 1} })
     wrapper = mount(
       <Provider store={store}>
-        <App />
+        <App /> 
       </Provider>
     );
 
