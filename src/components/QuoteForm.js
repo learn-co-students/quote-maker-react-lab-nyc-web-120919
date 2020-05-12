@@ -20,6 +20,10 @@ class QuoteForm extends Component {
     e.preventDefault()
     const quote = {...this.state, id: uuid()}
     this.props.addQuote(quote)
+    this.setState({
+      content: '',
+      author: ''
+    })
   }
 
   render() {
