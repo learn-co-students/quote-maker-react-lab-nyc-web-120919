@@ -78,7 +78,4 @@ Delete buttons.
 
 Here is an image of what the completed app will look like:
 
-![quote app example][app-example]
-
-
-[app-example]: https://s3-us-west-2.amazonaws.com/curriculum-content/web-development/react/quote-app-image.png
+![quote app example](https://s3-us-west-2.amazonaws.com/curriculum-content/web-development/react/quote-app-image.png)
