@@ -4,25 +4,26 @@
 
 - Use the react-redux library and the redux library to build an application with
   multiple resources.
+- Learn how to implement our final CRUD action, update.
 
 ## Overview
 
-In this lab we will be building an application for making quotes. This will
-include creating a quote and updating the global Redux state.
-
-In our `App` component we will render the components: `QuoteForm` & `Quotes`. We
-will also need a reducer and actions file for our Quotes.
+In this lab we will be building an application for making, updating, and deleting 
+quotes. In our `App` component we will render two components: `QuoteForm` and 
+`Quotes`. We will build Action Creators in `actions/quotes.js` and write our 
+`quotes` reducer to handle those actions.
 
 ### Quotes Reducer
 
-The quotes reducer should have an initial state of:
+If you look in `reducers/quotes.js`, you will see that the quotes reducer has an 
+initial state of:
 
 ```javascript
 []
 ```
 
-But when a Quote is added it should look like this
-(we will be using the uuid node package for generating ids):
+But when a Quote is added it should look like this (we will be using the uuid 
+node package for generating ids):
 
 ```javascript
 [
@@ -34,30 +35,39 @@ But when a Quote is added it should look like this
 ]
 ```
 
-We will also need to extend out the Quotes Reducer to handle removing quotes,
-upvoting quotes, and downvoting quotes as well. Check out the test specs for how
-to build these.
+We will need to extend out the Quotes Reducer to handle removing quotes, 
+upvoting quotes, and downvoting quotes as well. Check out the test specs for 
+how to build these.
+
+HINT: In order to handle upvoting and downvoting quotes, you will need to update 
+the quote object in state. Think about how this would be done. When a user 
+clicks the "Upvote" or "Downvote" button, you will dispatch the appropriate 
+action to the reducer. Inside the reducer, instead of filtering as we would for 
+a delete action, you might consider mapping — i.e., all quotes will be returned, 
+but if a quote's id matches the id passed as the action's payload, the quote 
+will be returned with an updated vote count.
 
 ### Quotes Actions
 
-Build out several actions as specified in the tests that build Action Creators
-for add, removing, upvoting and downvoting quotes.
+Create Action Creators as specified in the tests for adding, removing, upvoting 
+and downvoting quotes.
 
 ### QuoteForm Component
 
-Our Quote form will have a textarea for a quotes content and an input for a
-quotes author. We will be using component state for updating the inputs so make
-sure to have a state of `{ content: '', author: '' }` in your `QuoteForm`
-constructor. You will make a dispatch action to Redux using an action you will
-create called `addQuote()` that will take a quote as an argument and start the
-reducer process.
+`QuoteForm` is already set up with a textarea for a quote's content and an input 
+for its author. We will be using component state to control the inputs so make 
+sure to have your `QuoteForm`'s component state structured as follows: 
+`{ content: '', author: '' }`. When the form is submitted, an `addQuote()` 
+action will be dispatched to the reducer; `addQuote` should take a quote object 
+as an argument.
 
 ### Quotes Component
 
-The `Quotes` Component will render a list of individual `QuoteCard` components.
-It needs to be connected to the `Redux` state so that it can render the quotes.
-Also make sure to attach the remove, upvote, and downvote actions from the
-Quotes Actions file to pass down as callback props to the `QuoteCard` component.
+The `Quotes` container component will render a list of individual `QuoteCard` 
+components. It needs to be connected to the `Redux` state so that it can render 
+the quotes. Also make sure to attach the remove, upvote, and downvote actions 
+from the `actions/quotes.js` file to pass down as callback props to the 
+`QuoteCard` component.
 
 ### QuoteCard Component
 
@@ -66,20 +76,9 @@ Delete buttons.
 
 #### Example App
 
-Here is an image of the example app, of what you are trying to build.
+Here is an image of what the completed app will look like:
 
-![quote app example](https://s3-us-west-2.amazonaws.com/curriculum-content/web-development/react/quote-app-image.png)
+![quote app example][app-example]
 
-#### Note
 
-We are using the `Node UUID` package for this to create random unique ids. Here
-is the documentation for [Node UUID](https://github.com/kelektiv/node-uuid). To
-use it just import it into your reducer and invoke it
-
-```javascript
-import uuid from 'uuid';
-
-const id = uuid();
-console.log(id) // '1fd3234'
-```
-
+[app-example]: https://s3-us-west-2.amazonaws.com/curriculum-content/web-development/react/quote-app-image.png
